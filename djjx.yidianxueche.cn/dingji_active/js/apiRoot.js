@@ -1,5 +1,5 @@
 // 域名地址
-let domainName = "http://admin.yidianxueche.cn";
+let domainName = "http://aladmin.yidianxueche.cn";
 let getwxinfo=domainName + "/api/user/getwxinfo_djjxhd"
 // 学校id
 let school_id = 1;
