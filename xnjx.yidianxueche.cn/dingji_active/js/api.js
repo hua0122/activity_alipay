@@ -10,6 +10,8 @@ let activity_get_tel = "/api/activity/get_tel";
 let activity_prestore = "/api/activity/prestore";
 // h5预存
 let activity_prestore_h5 = "/api/activity/prestore_h5";
+// 支付宝预存
+let activity_prestore_alipay = "/api/activity/prestore_alipay";
 // 分享前
 let activity_share = "/api/activity/share";
 // 邀请列表
@@ -24,7 +26,6 @@ let activity_chance = "/api/activity/chance";
 let activity_luck_list = "/api/activity/luck_list";
 // 分享成功之后调一下
 let activity_share_after = "/api/activity/share_after";
-
 // 根据邀请人id获取电话号码
 function get_tel() {
 	let ajaxdata = {
@@ -257,6 +258,41 @@ function prestore_h5() {
 			btn: '确定'
 		});
 	}
+}
+
+// 支付宝预存
+function prestore_alipay() {
+	let userInfo = JSON.parse(localStorage.getItem("userInfo"));
+	let yaoqing_id = getQueryString("yaoqing_id"),
+		id = "";
+	if (yaoqing_id != null || yaoqing_id != "" || yaoqing_id != "null" || yaoqing_id != undefined || yaoqing_id !=
+		"undefined") {
+		id = yaoqing_id;
+	} else {
+		id = getQueryString("fenxiang_id");
+	}
+	
+	let ajaxdata = {
+		amount: 100,
+		tel: userInfo.tel,
+		id: userInfo.pid,
+		school_id: school_id
+	}
+	$.ajax({
+		type: "post",
+		url: domainName + activity_prestore_alipay,
+		dataType: "json",
+		data: ajaxdata,
+		success: function(data) {
+			console.log(data.data)
+		},
+		error: function(data) {
+			console.log(data.responseText)
+$("body").append(data.responseText);
+		},
+		async: false
+	});
+
 }
 // 分享前
 function share() {
