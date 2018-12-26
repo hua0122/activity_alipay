@@ -249,8 +249,9 @@ function prestore_h5() {
 	let data = ajaxPost(activity_prestore_h5, ajaxdata);
 	if (data.status == "200") {
 		console.log(data.data);
-		console.log("https://wx.tenpay.com/cgi-bin/mmpayweb-bin/checkmweb?" + data.data.package+"&package"+data.data.timestamp)
-		location.href = "https://wx.tenpay.com/cgi-bin/mmpayweb-bin/checkmweb?" + data.data.package+"&package="+data.data.timestamp;
+		console.log("https://wx.tenpay.com/cgi-bin/mmpayweb-bin/checkmweb?" + data.data.package + "&package" + data.data.timestamp)
+		location.href = "https://wx.tenpay.com/cgi-bin/mmpayweb-bin/checkmweb?" + data.data.package + "&package=" + data.data
+			.timestamp;
 
 	} else {
 		layer.open({
@@ -271,7 +272,7 @@ function prestore_alipay() {
 	} else {
 		id = getQueryString("fenxiang_id");
 	}
-	
+
 	let ajaxdata = {
 		amount: 100,
 		tel: userInfo.tel,
@@ -284,11 +285,16 @@ function prestore_alipay() {
 		dataType: "json",
 		data: ajaxdata,
 		success: function(data) {
-			console.log(data.data)
+			if (data.status == "10x") {
+				layer.open({
+					content: data.msg,
+					btn: '确定'
+				});
+			}
 		},
 		error: function(data) {
 			console.log(data.responseText)
-$("body").append(data.responseText);
+			$("body").append(data.responseText);
 		},
 		async: false
 	});
