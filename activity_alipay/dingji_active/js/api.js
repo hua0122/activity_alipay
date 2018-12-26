@@ -271,8 +271,22 @@ function prestore_alipay() {
 	} else {
 		id = getQueryString("fenxiang_id");
 	}
+	
+	let ajaxdata = {
+		amount: 100,
+		tel: userInfo.tel,
+		id: userInfo.pid,
+		school_id: school_id
+	}
+	let data = ajaxPost(activity_prestore_alipay, ajaxdata);
+	if(data.status=="10x"){
+		layer.open({
+			content: data.msg,
+			btn: '确定'
+		});
+	}else{
 	location.href=domainName+activity_prestore_alipay+"?amount=100&tel="+userInfo.tel+"&id="+userInfo.pid+"&school_id="+school_id;
-
+	}
 }
 // 分享前
 function share() {
