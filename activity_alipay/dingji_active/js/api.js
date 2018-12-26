@@ -292,16 +292,7 @@ $("body").append(data.responseText);
 		},
 		async: false
 	});
-// 	let data = ajaxPost(activity_prestore_alipay, ajaxdata);
-// 	if(data.status=="10x"){
-// 		layer.open({
-// 			content: data.msg,
-// 			btn: '确定'
-// 		});
-// 	}else{
-// 		console.log(data)
-// 	// location.href=domainName+activity_prestore_alipay+"?amount=100&tel="+userInfo.tel+"&id="+userInfo.pid+"&school_id="+school_id;
-// 	}
+
 }
 // 分享前
 function share() {
