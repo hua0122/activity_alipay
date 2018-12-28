@@ -334,7 +334,10 @@
 						} else {
 							// prestore_h5();
 							prestore_alipay()
-
+	$(".ycbtn").css("pointer-events", "none");
+							setTimeout(function() {
+								$(".ycbtn").css("pointer-events", "visible");
+							}, 2000)
 						}
 					})
 					$(".lmi-popo").click(function() {
